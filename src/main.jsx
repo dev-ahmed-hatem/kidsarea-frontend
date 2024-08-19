@@ -8,7 +8,7 @@ import "./css/index.css";
 import Login from "./components/login/Login.jsx";
 import NotFound from "./NotFound.jsx";
 
-export const browserRoutes = [
+export const browserRoutes = createBrowserRouter([
     {
         path: "/home",
         element: <div className="font-bold text-2xl text-center">Home</div>,
@@ -25,14 +25,12 @@ export const browserRoutes = [
         element: <div className="font-bold text-2xl text-center">logout</div>,
         errorElement: <NotFound />,
     },
-];
+]);
 
 createRoot(document.getElementById("root")).render(
     <StrictMode>
         <Flowbite theme={{ theme: theme }}>
-            <RouterProvider
-                router={createBrowserRouter(browserRoutes)}
-            ></RouterProvider>
+            <RouterProvider router={browserRoutes}></RouterProvider>
         </Flowbite>
     </StrictMode>
 );
