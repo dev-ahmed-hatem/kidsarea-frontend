@@ -24,16 +24,16 @@ export const browserRoutes = [
     },
 ];
 
-routes.map((route) => {
-    browserRoutes[0]["children"].push({
-        path: route.url,
-        element: <Section item={route} />,
-        errorElement: <NotFound />,
-        children: route.children.map((child) => {
-            return {
-                path: child.url,
-                element: child.element? child.element : <Subsection />,
-            };
-        }),
-    });
-});
+// routes.map((route) => {
+//     browserRoutes[0]["children"].push({
+//         path: route.url,
+//         element: <Section item={route} />,
+//         errorElement: <NotFound />,
+//         children: route.children.map((child) => {
+//             return {
+//                 path: child.url,
+//                 element: child.element? child.element : <Subsection />,
+//             };
+//         }),
+//     });
+// });
