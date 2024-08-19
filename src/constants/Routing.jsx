@@ -2,15 +2,15 @@ import Section from "../components/sections/Section";
 import Subsection from "../components/sections/Subsection";
 import NotFound from "../NotFound";
 // import Main from "../components/main";
-// import { routes } from "./Index";
+import { routes } from "./Index";
 import Login from "../components/login/Login";
 
 export const browserRoutes = [
     {
-        path: "/home",
+        path: "/",
         element: <div className="font-bold text-2xl text-center">Home</div>,
         errorElement: <NotFound />,
-        // children: [],
+        children: [],
     },
     {
         path: "/login",
