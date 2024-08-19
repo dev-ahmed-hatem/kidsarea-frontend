@@ -2,7 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Flowbite } from "flowbite-react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { browserRoutes } from "./constants/Routing";
+import { browserRoutes } from "./constants/Routing.jsx";
 import theme from "./assets/FlowbiteTheme";
 import "./css/index.css";
 
