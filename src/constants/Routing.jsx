@@ -7,10 +7,10 @@ import Login from "../components/login/Login";
 
 export const browserRoutes = [
     {
-        path: "/",
+        path: "/home",
         element: <div className="font-bold text-2xl text-center">Home</div>,
         errorElement: <NotFound />,
-        children: [],
+        // children: [],
     },
     {
         path: "/login",
