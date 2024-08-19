@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { forwardRef } from "react";
-import { routes } from "../../constants/Index";
+import { routes } from "../../constants/routes";
 import NestedMenuItem from "./NestedMenuItem";
 import SingleMenuItem from "./SingleMenuItem";
 import { Link } from "react-router-dom";

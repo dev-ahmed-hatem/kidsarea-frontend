@@ -1,5 +1,5 @@
 import React from "react";
-import { routes } from "../../constants/Index";
+import { routes } from "../../constants/routes";
 import { Link } from "react-router-dom";
 
 const System = () => {
