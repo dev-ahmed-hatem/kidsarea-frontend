@@ -1,16 +1,7 @@
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { Flowbite } from "flowbite-react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import theme from "./assets/FlowbiteTheme";
-import { browserRoutes } from "./constants/Routing";
+import "./css/index.css";
 
 createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        <Flowbite theme={{ theme: theme }}>
-            <RouterProvider
-                router={createBrowserRouter(browserRoutes)}
-            ></RouterProvider>
-        </Flowbite>
-    </StrictMode>
+    <div className="font-bold text-center text-3xl">Main Content</div>
 );
