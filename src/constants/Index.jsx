@@ -13,7 +13,7 @@
 // import Games from "../components/settings/games/Games";
 // import { SlCalender } from "react-icons/sl";
 
-const routes = [
+export const routes = [
     {
         id: 1,
         title: "إدارة طاقم العمل",
@@ -95,5 +95,3 @@ const routes = [
         ],
     },
 ];
-
-export default routes;

@@ -2,7 +2,7 @@ import Section from "../components/sections/Section";
 import Subsection from "../components/sections/Subsection";
 import NotFound from "../NotFound";
 import Main from "../components/main";
-import routes from "./Index.jsx";
+import { routes } from "./Index.jsx";
 import Login from "../components/login/Login";
 
 export const browserRoutes = [
