@@ -37,47 +37,6 @@ export const routes = [
                 ),
                 permissions: "unadjustable",
             },
-            // {
-            //     id: 2,
-            //     title: "الموظفين",
-            //     name: "staff",
-            //     url: "/users/employees",
-            //     icon: <MdPerson />,
-            //     element: (
-            //         <PermissionProvider
-            //             key={"employees"}
-            //             permissions_list={["users.employee"]}
-            //         >
-            //             <Employees />
-            //         </PermissionProvider>
-            //     ),
-            // },
-            // {
-            //     id: 3,
-            //     title: "المشرفين",
-            //     name: "moderators",
-            //     url: "/users/moderators",
-            //     icon: <MdSupervisorAccount />,
-            //     element: (
-            //         <PermissionProvider
-            //             key={"moderators"}
-            //             permissions_list={["users.moderator"]}
-            //         >
-            //             <Moderators />
-            //         </PermissionProvider>
-            //     ),
-            // },
-            // {
-            //     id: 4,
-            //     title: "الصلاحيات",
-            //     name: "permissions",
-            //     url: "/users/permissions",
-            //     icon: <MdSecurity />,
-            //     element: <Permissions />,
-            //     permissions: [
-            //         { id: 1, value: "تعديل الصلاحيات", name: "permissions" },
-            //     ],
-            // },
         ],
     },
     {
