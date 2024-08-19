@@ -1,8 +1,8 @@
-// import Section from "../components/sections/Section";
-// import Subsection from "../components/sections/Subsection";
+import Section from "../components/sections/Section";
+import Subsection from "../components/sections/Subsection";
 import NotFound from "../NotFound";
-// import Main from "../components/main";
-// import { routes } from "./Index";
+import Main from "../components/main";
+import { routes } from "./Index";
 import Login from "../components/login/Login";
 
 export const browserRoutes = [
