@@ -5,7 +5,7 @@
 //     FaUserTie,
 //     FaTicketAlt,
 // } from "react-icons/fa";
-// import Managers from "../components/users/managers/Managers";
+import Managers from "../components/users/managers/Managers";
 // import { BiSolidCategory } from "react-icons/bi";
 // import Ticket from "../components/tickets/Ticket";
 import PermissionProvider from "../providers/PermissionProvider";
