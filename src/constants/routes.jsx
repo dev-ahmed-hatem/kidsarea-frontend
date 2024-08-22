@@ -8,7 +8,7 @@
 // import Managers from "../components/users/managers/Managers";
 // import { BiSolidCategory } from "react-icons/bi";
 // import Ticket from "../components/tickets/Ticket";
-// import PermissionProvider from "../providers/PermissionProvider";
+import PermissionProvider from "../providers/PermissionProvider";
 // import TicketsFilter from "../components/tickets/TicketsFilter";
 // import Games from "../components/settings/games/Games";
 // import { SlCalender } from "react-icons/sl";
