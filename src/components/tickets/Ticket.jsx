@@ -92,170 +92,205 @@ const Ticket = () => {
     return (
         <>
             {/* add form */}
-            <TicketForm
-                postURL={endpoints.ticket_list}
-                callBack={get_current_tickets}
-            />
+            {has_permission(
+                `${app_label}.${model_name}`,
+                `add_${perm_name}`
+            ) ? (
+                <TicketForm
+                    postURL={endpoints.ticket_list}
+                    callBack={get_current_tickets}
+                />
+            ) : (
+                <ErrorGroup title={"إضافة تذكرة"} message={"ليس لديك صلاحية"} />
+            )}
 
             {/* table data */}
-            <ViewGroup title={`تذاكر يوم  ${date}`}>
-                {loading ? (
-                    <Loading />
-                ) : fetchError ? (
-                    <p className="text-lg text-center text-red-600 py-4">
-                        خطأ في تحميل البيانات
-                    </p>
-                ) : (
-                    <>
-                        <div className="w-full lg:max-w-md mb-5">
-                            <div className="mb-2 block">
-                                <Label
-                                    htmlFor="birth_date"
-                                    value="التاريخ  :"
+            {has_permission(
+                `${app_label}.${model_name}`,
+                `view_${perm_name}`
+            ) ? (
+                <ViewGroup title={`تذاكر يوم  ${date}`}>
+                    {loading ? (
+                        <Loading />
+                    ) : fetchError ? (
+                        <p className="text-lg text-center text-red-600 py-4">
+                            خطأ في تحميل البيانات
+                        </p>
+                    ) : (
+                        <>
+                            <div className="w-full lg:max-w-md mb-5">
+                                <div className="mb-2 block">
+                                    <Label
+                                        htmlFor="birth_date"
+                                        value="التاريخ  :"
+                                    />
+                                </div>
+                                <Datepicker
+                                    id="birth_date"
+                                    language="ar"
+                                    labelClearButton="مسح"
+                                    labelTodayButton="اليوم"
+                                    placeholder="تاريخ الميلاد"
+                                    color={"primary"}
+                                    onSelectedDateChanged={(date) => {
+                                        setDate(
+                                            date.toLocaleDateString("en-CA")
+                                        );
+                                    }}
                                 />
                             </div>
-                            <Datepicker
-                                id="birth_date"
-                                language="ar"
-                                labelClearButton="مسح"
-                                labelTodayButton="اليوم"
-                                placeholder="تاريخ الميلاد"
-                                color={"primary"}
-                                onSelectedDateChanged={(date) => {
-                                    setDate(date.toLocaleDateString("en-CA"));
+                            <TableGroup
+                                onChange={(event) => {
+                                    setSearchParam(event.target.value);
+                                    setPageNumber(1);
                                 }}
-                            />
-                        </div>
-                        <TableGroup
-                            onChange={(event) => {
-                                setSearchParam(event.target.value);
-                                setPageNumber(1);
-                            }}
-                        >
-                            {data.count == 0 ? (
-                                <Table.Body>
-                                    <Table.Row className="text-lg text-center text-gray-800 py-3 font-bold bg-red-500">
-                                        <Table.Cell>لا توجد بيانات</Table.Cell>
-                                    </Table.Row>
-                                </Table.Body>
-                            ) : (
-                                <>
-                                    <Table.Head>
-                                        <Table.HeadCell>
-                                            رقم التذكرة
-                                        </Table.HeadCell>
-                                        <Table.HeadCell>اللعبة</Table.HeadCell>
-                                        <Table.HeadCell>السعر</Table.HeadCell>
-                                        <Table.HeadCell>الكمية</Table.HeadCell>
-                                        <Table.HeadCell>
-                                            الإجمالى
-                                        </Table.HeadCell>
-                                        <Table.HeadCell>التاريخ</Table.HeadCell>
-                                        <Table.HeadCell>إجراءات</Table.HeadCell>
-                                    </Table.Head>
+                            >
+                                {data.count == 0 ? (
                                     <Table.Body>
-                                        {data.results.map((ticket) => {
-                                            return (
-                                                <Table.Row
-                                                    key={ticket.id}
-                                                    className="bg-white font-medium text-gray-900"
-                                                >
-                                                    <Table.Cell>
-                                                        {ticket.id ? (
-                                                            ticket.id
-                                                        ) : (
-                                                            <span className="text-red-600">
-                                                                غير مسجل
-                                                            </span>
-                                                        )}
-                                                    </Table.Cell>
-                                                    <Table.Cell>
-                                                        {ticket.game?.name ? (
-                                                            ticket.game?.name
-                                                        ) : (
-                                                            <span className="text-red-600">
-                                                                غير مسجل
-                                                            </span>
-                                                        )}
-                                                    </Table.Cell>
-                                                    <Table.Cell>
-                                                        {ticket.game?.price ? (
-                                                            ticket.game?.price
-                                                        ) : (
-                                                            <span className="text-red-600">
-                                                                غير مسجل
-                                                            </span>
-                                                        )}
-                                                    </Table.Cell>
-                                                    <Table.Cell>
-                                                        {ticket.amount ? (
-                                                            ticket.amount
-                                                        ) : (
-                                                            <span className="text-red-600">
-                                                                غير مسجل
-                                                            </span>
-                                                        )}
-                                                    </Table.Cell>
-                                                    <Table.Cell>
-                                                        {ticket.total_price ? (
-                                                            ticket.total_price
-                                                        ) : (
-                                                            <span className="text-red-600">
-                                                                غير مسجل
-                                                            </span>
-                                                        )}
-                                                    </Table.Cell>
-                                                    <Table.Cell>
-                                                        {ticket.date ? (
-                                                            ticket.date
-                                                        ) : (
-                                                            <span className="text-red-600">
-                                                                غير مسجل
-                                                            </span>
-                                                        )}
-                                                    </Table.Cell>
-                                                    <Table.Cell>
-                                                        <span className="flex text-xl gap-x-3">
-                                                            <MdEdit
-                                                                className="text-accent cursor-pointer"
-                                                                onClick={() => {
-                                                                    handleDrawer(
-                                                                        "edit",
-                                                                        ticket
-                                                                    );
-                                                                }}
-                                                            />
-                                                            <MdDelete
-                                                                className="text-secondary cursor-pointer"
-                                                                onClick={() => {
-                                                                    handleDrawer(
-                                                                        "delete",
-                                                                        ticket
-                                                                    );
-                                                                }}
-                                                            />
-                                                        </span>
-                                                    </Table.Cell>
-                                                </Table.Row>
-                                            );
-                                        })}
+                                        <Table.Row className="text-lg text-center text-gray-800 py-3 font-bold bg-red-500">
+                                            <Table.Cell>
+                                                لا توجد بيانات
+                                            </Table.Cell>
+                                        </Table.Row>
                                     </Table.Body>
-                                </>
-                            )}
-                        </TableGroup>
+                                ) : (
+                                    <>
+                                        <Table.Head>
+                                            <Table.HeadCell>
+                                                رقم التذكرة
+                                            </Table.HeadCell>
+                                            <Table.HeadCell>
+                                                اللعبة
+                                            </Table.HeadCell>
+                                            <Table.HeadCell>
+                                                السعر
+                                            </Table.HeadCell>
+                                            <Table.HeadCell>
+                                                الكمية
+                                            </Table.HeadCell>
+                                            <Table.HeadCell>
+                                                الإجمالى
+                                            </Table.HeadCell>
+                                            <Table.HeadCell>
+                                                التاريخ
+                                            </Table.HeadCell>
+                                            <Table.HeadCell>
+                                                إجراءات
+                                            </Table.HeadCell>
+                                        </Table.Head>
+                                        <Table.Body>
+                                            {data.results.map((ticket) => {
+                                                return (
+                                                    <Table.Row
+                                                        key={ticket.id}
+                                                        className="bg-white font-medium text-gray-900"
+                                                    >
+                                                        <Table.Cell>
+                                                            {ticket.id ? (
+                                                                ticket.id
+                                                            ) : (
+                                                                <span className="text-red-600">
+                                                                    غير مسجل
+                                                                </span>
+                                                            )}
+                                                        </Table.Cell>
+                                                        <Table.Cell>
+                                                            {ticket.game
+                                                                ?.name ? (
+                                                                ticket.game
+                                                                    ?.name
+                                                            ) : (
+                                                                <span className="text-red-600">
+                                                                    غير مسجل
+                                                                </span>
+                                                            )}
+                                                        </Table.Cell>
+                                                        <Table.Cell>
+                                                            {ticket.game
+                                                                ?.price ? (
+                                                                ticket.game
+                                                                    ?.price
+                                                            ) : (
+                                                                <span className="text-red-600">
+                                                                    غير مسجل
+                                                                </span>
+                                                            )}
+                                                        </Table.Cell>
+                                                        <Table.Cell>
+                                                            {ticket.amount ? (
+                                                                ticket.amount
+                                                            ) : (
+                                                                <span className="text-red-600">
+                                                                    غير مسجل
+                                                                </span>
+                                                            )}
+                                                        </Table.Cell>
+                                                        <Table.Cell>
+                                                            {ticket.total_price ? (
+                                                                ticket.total_price
+                                                            ) : (
+                                                                <span className="text-red-600">
+                                                                    غير مسجل
+                                                                </span>
+                                                            )}
+                                                        </Table.Cell>
+                                                        <Table.Cell>
+                                                            {ticket.date ? (
+                                                                ticket.date
+                                                            ) : (
+                                                                <span className="text-red-600">
+                                                                    غير مسجل
+                                                                </span>
+                                                            )}
+                                                        </Table.Cell>
+                                                        <Table.Cell>
+                                                            <span className="flex text-xl gap-x-3">
+                                                                <MdEdit
+                                                                    className="text-accent cursor-pointer"
+                                                                    onClick={() => {
+                                                                        handleDrawer(
+                                                                            "edit",
+                                                                            ticket
+                                                                        );
+                                                                    }}
+                                                                />
+                                                                <MdDelete
+                                                                    className="text-secondary cursor-pointer"
+                                                                    onClick={() => {
+                                                                        handleDrawer(
+                                                                            "delete",
+                                                                            ticket
+                                                                        );
+                                                                    }}
+                                                                />
+                                                            </span>
+                                                        </Table.Cell>
+                                                    </Table.Row>
+                                                );
+                                            })}
+                                        </Table.Body>
+                                    </>
+                                )}
+                            </TableGroup>
 
-                        {data.total_pages > 1 && (
-                            <TablePagination
-                                totalPages={data.total_pages}
-                                currentPage={data.current_page}
-                                onPageChange={(page) => {
-                                    setPageNumber(page);
-                                }}
-                            />
-                        )}
-                    </>
-                )}
-            </ViewGroup>
+                            {data.total_pages > 1 && (
+                                <TablePagination
+                                    totalPages={data.total_pages}
+                                    currentPage={data.current_page}
+                                    onPageChange={(page) => {
+                                        setPageNumber(page);
+                                    }}
+                                />
+                            )}
+                        </>
+                    )}
+                </ViewGroup>
+            ) : (
+                <ErrorGroup
+                    title={`تذاكر يوم  ${date}`}
+                    message={"ليس لديك صلاحية"}
+                />
+            )}
         </>
     );
 };
