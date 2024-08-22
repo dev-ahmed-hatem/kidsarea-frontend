@@ -27,14 +27,14 @@ export const routes = [
                 name: "managers",
                 url: "/users/managers",
                 // icon: <FaUserTie />,
-                // element: (
-                //     <PermissionProvider
-                //         key={"managers"}
-                //         permissions_list={["users.user"]}
-                //     >
-                //         <Managers />
-                //     </PermissionProvider>
-                // ),
+                element: (
+                    <PermissionProvider
+                        key={"managers"}
+                        permissions_list={["users.user"]}
+                    >
+                        <Managers />
+                    </PermissionProvider>
+                ),
                 permissions: "unadjustable",
             },
         ],
