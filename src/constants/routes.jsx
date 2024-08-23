@@ -51,14 +51,14 @@ export const routes = [
                 title: "الألعاب",
                 url: "/settings/games",
                 icon: <BiSolidCategory />,
-                // element: (
-                //     <PermissionProvider
-                //         key={"games"}
-                //         permissions_list={["games.game"]}
-                //     >
-                //         <Games />,
-                //     </PermissionProvider>
-                // ),
+                element: (
+                    <PermissionProvider
+                        key={"games"}
+                        permissions_list={["games.game"]}
+                    >
+                        <Games />,
+                    </PermissionProvider>
+                ),
             },
         ],
     },
