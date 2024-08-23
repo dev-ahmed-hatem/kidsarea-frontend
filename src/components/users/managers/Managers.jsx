@@ -82,7 +82,7 @@ const Managers = () => {
     };
 
     useEffect(() => {
-        if (has_permission(`${app_label}.${model_name}`, `view_${perm_name}`)) {
+        if (has_permission(`${app_label}.${model_name}`, `${model_name}.view_${perm_name}`)) {
             get_current_managers();
         }
     }, [searchParam, pageNumber]);
@@ -92,7 +92,7 @@ const Managers = () => {
             {/* add form */}
             {has_permission(
                 `${app_label}.${model_name}`,
-                `add_${perm_name}`
+                `${model_name}.add_${perm_name}`
             ) ? (
                 <ManagersForm
                     postURL={endpoints.manager_list}
@@ -105,7 +105,7 @@ const Managers = () => {
             {/* table data */}
             {has_permission(
                 `${app_label}.${model_name}`,
-                `view_${perm_name}`
+                `${model_name}.view_${perm_name}`
             ) ? (
                 <ViewGroup title={"المديرين الحاليين"}>
                     {loading ? (

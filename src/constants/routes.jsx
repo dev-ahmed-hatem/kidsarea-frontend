@@ -8,7 +8,6 @@ import {
 import Managers from "../components/users/managers/Managers";
 import { BiSolidCategory } from "react-icons/bi";
 import Ticket from "../components/tickets/Ticket";
-import PermissionProvider from "../providers/PermissionProvider";
 import TicketsFilter from "../components/tickets/TicketsFilter";
 import Games from "../components/settings/games/Games";
 import { SlCalender } from "react-icons/sl";
@@ -27,14 +26,7 @@ export const routes = [
                 name: "managers",
                 url: "/users/managers",
                 icon: <FaUserTie />,
-                element: (
-                    <PermissionProvider
-                        key={"managers"}
-                        permissions_list={["users.user"]}
-                    >
-                        <Managers />
-                    </PermissionProvider>
-                ),
+                element: <Managers />,
                 permissions: "unadjustable",
             },
         ],
@@ -51,14 +43,7 @@ export const routes = [
                 title: "الألعاب",
                 url: "/settings/games",
                 icon: <BiSolidCategory />,
-                element: (
-                    <PermissionProvider
-                        key={"games"}
-                        permissions_list={["games.game"]}
-                    >
-                        <Games />,
-                    </PermissionProvider>
-                ),
+                element: <Games />,
             },
         ],
     },
@@ -75,14 +60,7 @@ export const routes = [
                 name: "add-ticket",
                 url: "/tickets/add-ticket",
                 icon: <FaTicketAlt />,
-                element: (
-                    <PermissionProvider
-                        key={"tickets"}
-                        permissions_list={["tickets.ticket"]}
-                    >
-                        <Ticket />,
-                    </PermissionProvider>
-                ),
+                element: <Ticket />,
             },
             {
                 id: 2,

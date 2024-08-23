@@ -7,11 +7,11 @@ import theme from "./assets/FlowbiteTheme";
 import "./css/index.css";
 
 createRoot(document.getElementById("root")).render(
-    <StrictMode>
+    // <StrictMode>
         <Flowbite theme={{ theme: theme }}>
             <RouterProvider
                 router={createBrowserRouter(browserRoutes)}
             ></RouterProvider>
         </Flowbite>
-    </StrictMode>
+    // </StrictMode>
 );

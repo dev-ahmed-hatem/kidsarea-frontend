@@ -181,7 +181,7 @@ const TicketsFilter = () => {
                     ) : (
                         <>
                             <div className="tickets gap-y-6">
-                                {data?.length == 0 ? (
+                                {data?.tickets?.length == 0 ? (
                                     <p className="w-full text-lg text-center text-gray-800 py-3 font-bold bg-primary-200">
                                         لا توجد بيانات
                                     </p>

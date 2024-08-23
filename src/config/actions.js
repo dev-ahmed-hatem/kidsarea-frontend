@@ -66,25 +66,28 @@ export const get_models_permissions = async (models) => {
     }
 };
 
+// fetch all user permissions permissions from api
+export const get_user_permissions = async () => {
+    try {
+        const response = await axios.get(endpoints.user_permissions);
+        console.log(response.data);
+        return response.data;
+        
+    } catch (error) {
+        console.log(error);
+        return Promise.reject(error);
+    }
+};
+
 // set permission for specific view
 export const set_page_permissions = ({
-    permissions_list,
     setPermissions,
     setLoading,
     setLoadError,
-    setForbidden,
 }) => {
-    get_models_permissions(permissions_list)
+    get_user_permissions()
         .then((data) => {
             setPermissions(data);
-            // make forbidden if all model permissions are empty
-            for (let i in data) {
-                if (data[i].length !== 0) {
-                    setForbidden(false);
-                    return;
-                }
-            }
-            setForbidden(true);
         })
         .catch((error) => {
             setLoadError(error);

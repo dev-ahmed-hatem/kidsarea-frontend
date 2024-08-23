@@ -8,6 +8,7 @@ import { verifyToken } from "../config/axiosconfig.js";
 import Loading from "./groups/Loading.jsx";
 import DrawerProvider from "../providers/DrawerProvider.jsx";
 import ToastProvider from "../providers/ToastProvider.jsx";
+import PermissionProvider from "../providers/PermissionProvider.jsx";
 
 const Main = () => {
     const navigate = useNavigate();
@@ -78,7 +79,13 @@ const Main = () => {
                                 setMenuState={setMenuOpen}
                                 ref={menuRef}
                             />
-                            {isHome ? <Home /> : <Outlet />}
+                            {isHome ? (
+                                <Home />
+                            ) : (
+                                <PermissionProvider>
+                                    <Outlet />
+                                </PermissionProvider>
+                            )}
                         </>
                     </DrawerProvider>
                 </ToastProvider>

@@ -6,6 +6,7 @@ const endpoints = {
     token_refresh: `${api_base_url}token/refresh/`,
     token_verify: `${api_base_url}token/verify/`,
     models_permissions: `${api_base_url}api/users/get_models_permissions/`,
+    user_permissions: `${api_base_url}api/users/get_user_permissions/`,
     authenticated_user: `${api_base_url}api/get_authenticated_user/`,
 
     // users routing

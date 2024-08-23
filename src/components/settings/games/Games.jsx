@@ -19,7 +19,7 @@ const Games = () => {
     const { has_permission } = usePermission();
 
     //////////////////////////////// permissions ////////////////////////////////
-    const [app_label, model_name, perm_name] = ["games", "game", "game"];
+    const [app_label, model_name, perm_name] = ["games", "games", "game"];
 
     //////////////////////////////// list data ////////////////////////////////
     const [data, setData] = useState([]);
@@ -79,7 +79,7 @@ const Games = () => {
     };
 
     useEffect(() => {
-        if (has_permission(`${app_label}.${model_name}`, `view_${perm_name}`)) {
+        if (has_permission(`${app_label}.${model_name}`, `${model_name}.view_${perm_name}`)) {
             get_current_games();
         }
     }, [searchParam, pageNumber]);
@@ -89,7 +89,7 @@ const Games = () => {
             {/* add form */}
             {has_permission(
                 `${app_label}.${model_name}`,
-                `add_${perm_name}`
+                `${model_name}.add_${perm_name}`
             ) ? (
                 <GameForm
                     postURL={endpoints.game_list}
@@ -102,7 +102,7 @@ const Games = () => {
             {/* table data */}
             {has_permission(
                 `${app_label}.${model_name}`,
-                `view_${perm_name}`
+                `${model_name}.view_${perm_name}`
             ) ? (
                 <ViewGroup title={"الألعاب الحالية"}>
                     {loading ? (
@@ -169,7 +169,7 @@ const Games = () => {
                                                             <span className="flex text-xl gap-x-3">
                                                                 {has_permission(
                                                                     `${app_label}.${model_name}`,
-                                                                    `change_${perm_name}`
+                                                                    `${model_name}.change_${perm_name}`
                                                                 ) && (
                                                                     <MdEdit
                                                                         className="text-accent cursor-pointer"
@@ -183,7 +183,7 @@ const Games = () => {
                                                                 )}
                                                                 {has_permission(
                                                                     `${app_label}.${model_name}`,
-                                                                    `delete_${perm_name}`
+                                                                    `${model_name}.delete_${perm_name}`
                                                                 ) && (
                                                                     <MdDelete
                                                                         className="text-secondary cursor-pointer"

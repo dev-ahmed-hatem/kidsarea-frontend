@@ -19,7 +19,7 @@ const Ticket = () => {
     const { has_permission } = usePermission();
 
     //////////////////////////////// permissions ////////////////////////////////
-    const [app_label, model_name, perm_name] = ["tickets", "ticket", "ticket"];
+    const [app_label, model_name, perm_name] = ["tickets", "tickets", "ticket"];
 
     //////////////////////////////// list data ////////////////////////////////
     const [data, setData] = useState([]);
@@ -82,7 +82,7 @@ const Ticket = () => {
     };
 
     useEffect(() => {
-        if (has_permission(`${app_label}.${model_name}`, `view_${perm_name}`)) {
+        if (has_permission(`${app_label}.${model_name}`, `${model_name}.view_${perm_name}`)) {
             get_current_tickets();
         }
     }, [searchParam, pageNumber, date]);
@@ -92,7 +92,7 @@ const Ticket = () => {
             {/* add form */}
             {has_permission(
                 `${app_label}.${model_name}`,
-                `add_${perm_name}`
+                `${model_name}.add_${perm_name}`
             ) ? (
                 <TicketForm
                     postURL={endpoints.ticket_list}
@@ -105,7 +105,7 @@ const Ticket = () => {
             {/* table data */}
             {has_permission(
                 `${app_label}.${model_name}`,
-                `view_${perm_name}`
+                `${model_name}.view_${perm_name}`
             ) ? (
                 <ViewGroup title={`تذاكر يوم  ${date}`}>
                     {loading ? (
