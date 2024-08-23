@@ -51,14 +51,14 @@ export const routes = [
                 title: "الألعاب",
                 url: "/settings/games",
                 icon: <BiSolidCategory />,
-                element: (
-                    <PermissionProvider
-                        key={"games"}
-                        permissions_list={["games.game"]}
-                    >
-                        <Games />,
-                    </PermissionProvider>
-                ),
+                // element: (
+                //     <PermissionProvider
+                //         key={"games"}
+                //         permissions_list={["games.game"]}
+                //     >
+                //         <Games />,
+                //     </PermissionProvider>
+                // ),
             },
         ],
     },
@@ -75,14 +75,14 @@ export const routes = [
                 name: "add-ticket",
                 url: "/tickets/add-ticket",
                 icon: <FaTicketAlt />,
-                element: (
-                    <PermissionProvider
-                        key={"tickets"}
-                        permissions_list={["tickets.ticket"]}
-                    >
-                        <Ticket />,
-                    </PermissionProvider>
-                ),
+                // element: (
+                //     <PermissionProvider
+                //         key={"tickets"}
+                //         permissions_list={["tickets.ticket"]}
+                //     >
+                //         <Ticket />,
+                //     </PermissionProvider>
+                // ),
             },
             {
                 id: 2,
